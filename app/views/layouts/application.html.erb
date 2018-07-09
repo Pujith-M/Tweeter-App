@@ -3,14 +3,14 @@
   <head>
     <title>Twittter</title>
     <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <% if flash[:notice] %>
+  	<% if flash[:notice] %>
   		<div class="notification is-primary global-notification">
   			<p class="notice"><%= notice %></p>
   		</div>
@@ -59,6 +59,7 @@
 				</div>
 			</div>
   	</nav>
+
     <%= yield %>
   </body>
 </html>
