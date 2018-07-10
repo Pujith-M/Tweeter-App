@@ -3,7 +3,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-        :omniauthable, omniauth_providers: [:google_oauth2]
+         :confirmable, :lockable, :timeoutable,
+         :omniauthable, omniauth_providers: [:google_oauth2]
   has_many :tweeets
 
   def self.create_from_provider_data(provider_data)
