@@ -15,6 +15,8 @@ gem 'bulma-rails', '~> 0.6.1'
 gem 'simple_form', '~> 4.0', '>= 4.0.1'
 gem 'gravatar_image_tag', '~> 1.2'
 gem 'devise', '~> 4.4', '>= 4.4.3'
+gem 'omniauth-google-oauth2', '~> 0.5.3'
+gem 'activerecord-session_store', '~> 1.1', '>= 1.1.1'
 
 
 group :production do
@@ -35,6 +37,7 @@ group :development do
   gem 'better_errors', '~> 2.4'
   gem 'guard', '~> 2.14', '>= 2.14.2'
   gem 'guard-livereload', '~> 2.5', require: false
+  gem 'dotenv', '~> 2.5'
 end
 
 group :test do
