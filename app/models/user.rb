@@ -3,7 +3,6 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :confirmable, :lockable, :timeoutable,
          :omniauthable, omniauth_providers: [:google_oauth2]
   has_many :tweeets
 
@@ -13,10 +12,10 @@ class User < ApplicationRecord
       user.name = provider_data.info.email
       user.username = provider_data.info.email
       user.password = Devise.friendly_token[0, 20]
-      user.skip_confirmation!
-      puts("-------------------------------------------------------------------------------------")
-      puts(provider_data.info.email)
-      puts("-------------------------------------------------------------------------------------")
+      # user.skip_confirmation!
+       puts("-------------------------------------------------------------------------------------")
+      # puts(provider_data.info.email)
+       puts("-------------------------------------------------------------------------------------")
     end
   end
 end
