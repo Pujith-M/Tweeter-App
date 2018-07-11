@@ -30,3 +30,12 @@
 .notification:not(:last-child) {
 	margin-bottom: 0;
 }
+
+
+#nav-toggle-state {
+  display: none;
+}
+
+#nav-toggle-state:checked ~ .nav-menu {
+  display: block;
+}
