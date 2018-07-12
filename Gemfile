@@ -17,6 +17,7 @@ gem 'gravatar_image_tag', '~> 1.2'
 gem 'devise', '~> 4.4', '>= 4.4.3'
 gem 'omniauth-google-oauth2', '~> 0.5.3'
 gem 'activerecord-session_store', '~> 1.1', '>= 1.1.1'
+gem 'social-share-button', '~> 1.1'
 
 
 group :production do

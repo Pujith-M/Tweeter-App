@@ -4,7 +4,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:google_oauth2]
-  has_many :tweeets
+         
+  validates :name, presence: true
+  validates :username, presence: true
+  validates_format_of :username, :with => /\A#[\w+\_]+\z/, :on => :create
+  
+  has_many :tweeets, dependent: :destroy
 
   def self.create_from_provider_data(provider_data)
     where(provider: provider_data.provider, uid: provider_data.uid).first_or_create do | user |

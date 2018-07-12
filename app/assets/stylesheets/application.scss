@@ -12,6 +12,8 @@
  *
  *= require_tree .
  *= require_self
+ 
+ *= require social-share-button
  */
 
  @import "bulma";
@@ -38,4 +40,14 @@
 
 #nav-toggle-state:checked ~ .nav-menu {
   display: block;
+}
+
+
+$size: 50px;
+.social-share-button {
+  .ssb-icon {
+    background-size: $size $size;
+    height: $size;
+    width: $size;
+  }
 }
