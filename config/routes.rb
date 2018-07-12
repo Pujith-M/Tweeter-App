@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
+  root "tweeets#index"
   devise_for :users, :controllers => { registrations: 'users/registrations', omniauth_callbacks: 'users/omniauth' }
   resources :tweeets
-  root "tweeets#index"
+  
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
+  
+  resources :relationships,       only: [:create, :destroy]
 end

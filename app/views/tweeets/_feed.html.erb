@@ -30,10 +30,10 @@
   			</div>
 				<div class="columns">
 					<div class="column">
-						<%= social_share_button_tag(tweeet.tweeet) %>
-					</div>
-					<div class="column">
 						<% if user_signed_in? && current_user.id == tweeet.user_id %>
+						<div class="column">
+							<%= social_share_button_tag(tweeet.tweeet) %>
+						</div>
 		  			<nav class="level">
 		  				<div class="level-left is-mobile">
 		  					<%= link_to tweeet, class: "level-item" do %>
