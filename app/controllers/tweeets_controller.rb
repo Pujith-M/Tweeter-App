@@ -5,6 +5,7 @@ class TweeetsController < ApplicationController
   # GET /tweeets
   # GET /tweeets.json
   def index
+    redirect_to new_user_session_path if not user_signed_in?
     @tweeets = Tweeet.all.order("created_at DESC")
     @tweeet = Tweeet.new
     @users = User.all.order("created_at DESC")

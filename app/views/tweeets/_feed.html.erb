@@ -21,7 +21,7 @@
   				<%= gravatar_image_tag(tweeet.user.email, size: 64, alt: tweeet.user.name) %>
   			</figure>
   		</div>
-  		<div class="media-content">
+  		<div class="content">
   			<blockquote>
   				<strong><%= tweeet.user.name %></strong><br />
   				<small><%= tweeet.user.username %></small><br/>
@@ -29,10 +29,10 @@
   				<p><%= tweeet.tweeet %></p>
   			</blockquote>
 				<div class="columns">
-					<% if user_signed_in? && current_user.id == tweeet.user_id %>
 					<div class="column">
 						<%= social_share_button_tag(tweeet.tweeet) %>
 					</div>
+					<% if current_user.id == tweeet.user_id %>
 					<div class="column">
 		  			<nav class="level">
 		  				<div class="level-left is-mobile">
