@@ -10,4 +10,7 @@ Rails.application.routes.draw do
   end
   
   resources :relationships,       only: [:create, :destroy]
+  
+  get '/profile/:id', to: 'users/profile#show'
+
 end
