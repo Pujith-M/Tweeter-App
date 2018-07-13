@@ -6,7 +6,7 @@ class Users::OmniauthController < ApplicationController
       sign_in_and_redirect @user
       # set_flash_message(:notice, :success, kind: 'Google') if is_navigational_format?
       if is_navigational_format?
-        flash[:notice] = 'Google'
+        flash[:notice] = 'Successfully sign-in with Google'
       end
     else
       flash[:error] = 'There was a problem signing you in through Google. Please register or try signing in later.'
