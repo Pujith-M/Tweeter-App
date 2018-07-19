@@ -51,3 +51,13 @@ $size: 50px;
     width: $size;
   }
 }
+
+.tweeet {
+  width: 98%;
+  border-style: inset;
+  border-width: 2px;
+  border-color: blue;
+  margin: 3px;
+  padding: 5px;
+  float: left;
+}
