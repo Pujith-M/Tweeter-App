@@ -3,56 +3,64 @@
   <div class="field">
     <div class="control">
       <lable>Tweeet about it</lable>
-      <div class="tweeet" id="tweeet" contenteditable="true" ></div>
-      <%= f.hidden_field :tweeet, label: "Tweeet about it", input_html: {class: "textarea", required: true}, id: "tweeetTextArea", wrapper: false, maxlength: 150, autofocus: true %>
+      <div class="tweeet" id="tweeet" contenteditable="true"></div>
+      <%= f.hidden_field :tweeet, input_html: { required: true}, id: "tweeetTextArea", wrapper: false, maxlength: 150%>
     </div>
   </div>
+  <p style="margin-top: 10%"></p>
   <%= f.button :submit, class: "button is-info", id: "createTweet", onclick: "return validateForm()" %>
 <% end %>
 
 
-<script >
+<script>
     let tweeet = document.getElementById('tweeet');
     let tweeetTextArea = document.getElementById("tweeetTextArea");
     let submitTweet = document.getElementById("createTweet");
-    submitTweet.disabled = true;
     tweeetTextArea.value = null;
+    let tweeetLimit = 280;
 
     tweeet.onkeyup = function () {
         manageTweeetLength();
     };
 
+    function appendChildNodeToTweeet(newTweeet) {
+        let content = document.createElement('span');
+        let extra = document.createElement('span');
+        content.textContent = newTweeet.slice(0, tweeetLimit);
+        extra.textContent = newTweeet.slice(tweeetLimit, newTweeet.length);
+        extra.style.color = 'red';
+        tweeet.appendChild(content);
+        tweeet.appendChild(extra);
+    }
+
+    function moveCursorToEnd() {
+        let s = window.getSelection();
+        let r = document.createRange();
+        r.setStart(tweeet, tweeet.childElementCount);
+        r.setEnd(tweeet, tweeet.childElementCount);
+        s.removeAllRanges();
+        s.addRange(r);
+    }
+
     function manageTweeetLength() {
         let newTweeet = tweeet.textContent;
-        if(newTweeet.length > 150){
-            tweeet.textContent = "";
-            let content = document.createElement('span');
-            let extra = document.createElement('span');
-            content.textContent = newTweeet.slice(0, 150);
-            extra.textContent = newTweeet.slice(150, newTweeet.length);
-            extra.style.color = 'red';
-            tweeet.appendChild(content);
-            tweeet.appendChild(extra);
-            tweeetTextArea.value = newTweeet.slice(0, 150);
+        if (newTweeet.length > tweeetLimit) {
+            tweeet.textContent = null;
+            appendChildNodeToTweeet(newTweeet);
+            tweeetTextArea.value = newTweeet.slice(0, tweeetLimit);
             submitTweet.disabled = true;
-            let s = window.getSelection();
-            let r = document.createRange();
-            r.setStart(tweeet, tweeet.childElementCount);
-            r.setEnd(tweeet, tweeet.childElementCount);
-            s.removeAllRanges();
-            s.addRange(r);
+            moveCursorToEnd();
+            return;
         }
-        else {
-            tweeetTextArea.value = newTweeet;
-            submitTweet.disabled = false;
-        }
+        tweeetTextArea.value = newTweeet;
+        submitTweet.disabled = false;
     }
 
     function validateForm() {
         manageTweeetLength();
         console.log(tweeetTextArea.value);
-        if(tweeetTextArea.value <1 || tweeetTextArea.value == null){
-            alert("Tweeet Length should'nt be zero");
+        if (tweeetTextArea.value < 1 || tweeetTextArea.value == null) {
+            alert("Tweeet cannot be empty!!");
             return false;
         }
         return true;
