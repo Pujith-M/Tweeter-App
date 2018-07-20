@@ -3,8 +3,8 @@
   <div class="field">
     <div class="control">
       <lable>Tweeet about it</lable>
-      <div class="tweeet" id="tweeet" contenteditable="true"></div>
-      <%= f.hidden_field :tweeet, input_html: { required: true}, id: "tweeetTextArea", wrapper: false, maxlength: 150%>
+      <div class="tweeet" id="tweeet" contenteditable="true" autofocus="true" ></div>
+      <%= f.hidden_field :tweeet, label: "Tweeet about it", input_html: { class: "textarea ", required: true}, id: "tweeetTextArea", wrapper: false, label_html: {class: "label"}, placeholder: "Compose a new tweeet...", maxlength: 280, autofocus: true %>
     </div>
   </div>
   <p style="margin-top: 10%"></p>
@@ -16,9 +16,9 @@
     let tweeet = document.getElementById('tweeet');
     let tweeetTextArea = document.getElementById("tweeetTextArea");
     let submitTweet = document.getElementById("createTweet");
-    tweeetTextArea.value = null;
     let tweeetLimit = 280;
-
+    console.log(tweeetTextArea.value);
+    tweeet.textContent = tweeetTextArea.value;
     tweeet.onkeyup = function () {
         manageTweeetLength();
     };

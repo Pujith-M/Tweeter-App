@@ -1,19 +1,44 @@
 <p id="notice"><%= notice %></p>
+<div class="columns" style="margin-left: 25%">
 
-
-<div class="section">
-	<div class="container text-center" >
-
-
-      <p>
-        <strong>Tweeet:</strong>
-        <%= @tweeet.tweeet %>
-      </p>
-      
-      <%= link_to 'Edit', edit_tweeet_path(@tweeet) %> |
-      <%= link_to 'Back', tweeets_path %>
-      
-
-
-	</div>
+  <div class="column is-half is-centered">
+    <% tweeet = @tweeet %>
+    <div class="box">
+      <article class="media">
+        <div class="media-left">
+          <figure class="image is-64x64">
+            <%= gravatar_image_tag(tweeet.user.email, size: 64, alt: tweeet.user.name) %>
+          </figure>
+        </div>
+        <div class="content" style="width: 98%">
+          <blockquote>
+            <strong><%= tweeet.user.name %></strong><br/>
+            <small><%= tweeet.user.username %></small>
+            <p><%= tweeet.tweeet %></p>
+            <p><%= time_ago_in_words(tweeet.created_at) %> ago.</p>
+          </blockquote>
+          <div class="columns">
+            <div class="column">
+              <%= social_share_button_tag(tweeet.tweeet) %>
+            </div>
+            <div class="column">
+              <nav class="level">
+                <div class="level-left is-mobile">
+                  <%= link_to tweeet, class: "level-item" do %>
+                    <span class="icon"><i class="fa fa-link" aria-hidden="true"></i></span>
+                  <% end %>
+                  <%= link_to edit_tweeet_path(tweeet), class: "level-item" do %>
+                    <span class="icon"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                  <% end %>
+                  <%= link_to tweeet, method: :delete, data: {confirm: "Are you sure you want to delete this tweeet?"} do %>
+                    <span class="icon"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
+                  <% end %>
+                </div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
 </div>
