@@ -11,11 +11,10 @@ describe User do
   end
 
   describe '#unfollow' do
-    let(:user) { create(:user) }
-    let(:follower) { create(:user) }
+    let(:user) { create(:user_with_followers) }
+    let(:follower) { user.followers.first }
 
     it 'should decrease user followers count when a follower unfollow user' do
-      follower.follow(user)
       expect { follower.unfollow(user) }.to change { user.followers.reload.count }.by -1
     end
   end
